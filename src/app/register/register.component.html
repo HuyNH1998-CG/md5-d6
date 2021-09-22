@@ -1,0 +1,62 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td>Email</td>
+      <td><input type="text" formControlName="email"></td>
+      <td *ngIf="form.email.errors && submitted">
+        <div *ngIf="form.email.errors.required">Email Required</div></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" formControlName="password"></td>
+      <td *ngIf="form.password.errors && submitted">
+        <div *ngIf="form.password.errors.required">Password Required</div></td>
+    </tr>
+    <tr>
+      <td>Confirm Password</td>
+      <td><input type="password" formControlName="confirmPassword"></td>
+      <td *ngIf="form.confirmPassword.errors && submitted">
+        <div *ngIf="form.confirmPassword.errors.required">Confirm Password is required</div>
+        <div *ngIf="form.confirmPassword.errors.mustMatch">Confirm Password Must be same as password</div></td>
+    </tr>
+    <tr>
+      <td>Country</td>
+      <td><select formControlName="country">
+        <option value="USA">USA</option>
+        <option value="VN">VN</option>
+        <option value="JP">JP</option>
+        <option value="CHINA">CHINA</option>
+      </select></td>
+      <td *ngIf="form.country.errors && submitted">Country Required</td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><input type="radio" formControlName="gender" value="male">Male
+        <input type="radio" formControlName="gender" value="female">Female</td>
+      <td *ngIf="form.gender.errors && submitted">Gender Required</td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td><input type="number" formControlName="age"></td>
+      <td *ngIf="form.age.errors && submitted">
+        <div *ngIf="form.age.errors.required">Age Required</div>
+        <div *ngIf="form.age.errors.min">Age must be 18+</div>
+      </td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td><input type="text" formControlName="phone"></td>
+      <td *ngIf="form.phone.errors && submitted">
+        <div *ngIf="form.phone.errors.required">Phone Required</div>
+        <div *ngIf="form.phone.errors.pattern">Phone Pattern not legit (+84xxxxxxxxxx)</div></td>
+    </tr>
+  </table>
+  <button type="submit">Submit</button>
+</form>
+
+<h1 *ngFor="let l of list">
+  {{l.email}}|
+  {{l.age}}|
+  {{l.country}}|
+  {{l.gender}}|
+</h1>
